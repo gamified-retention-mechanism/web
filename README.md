@@ -2,7 +2,7 @@
 
 React app front-end for the Gamification Retention Mechanism (GRM) system. 
 
-## Team
+## Team Honeybuckets
 
 * Bini
 * Jit
