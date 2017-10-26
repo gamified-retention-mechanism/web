@@ -9,7 +9,8 @@ class TeamLanding extends Component {
     match: PropTypes.object.isRequired
   }
 
-  static defaultProps = {
+  componentDidMount() {
+    //TODO - perform loading operations here
   }
 
   render() {
