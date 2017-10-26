@@ -5,12 +5,16 @@ import {
   Link
 } from 'react-router-dom'
 
+import App from './App'
+import GameLandingPage from './GameLandingPage'
+import TeamLandingPage from './TeamLandingPage'
+
 export default () => (
   <Router>
     <div>
-      <Route exact path="/" component={Home}/>
-      <Route path="/:gameID" component={About}/>
-      <Route path="/:gameID/:teamName" component={Topics}/>
+      <Route exact path="/" component={App}/>
+      <Route path="/:gameID/:teamName" component={TeamLandingPage}/>
+      <Route path="/:gameID" component={GameLandingPage}/>
     </div>
   </Router>
 )
