@@ -13,8 +13,8 @@ export default () => (
   <Router>
     <div>
       <Route exact path="/" component={App}/>
-      <Route path="/:gameID/:teamName" component={TeamLandingPage}/>
-      <Route path="/:gameID" component={GameLandingPage}/>
+      <Route exact path="/:gameID/:teamName" component={TeamLandingPage}/>
+      <Route exact path="/:gameID" component={GameLandingPage}/>
     </div>
   </Router>
 )
