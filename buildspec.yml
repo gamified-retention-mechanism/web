@@ -3,19 +3,18 @@ version: 0.1
 phases:
   install:
     commands:
-      - echo Installing Express...
-      - npm install express
-      - echo Installing Mocha...
-      - npm install -g mocha
+      - npm install
   pre_build:
     commands:
+      - echo node version $(node -v)
+      - echo npm version $(npm -v)
       - echo Installing source NPM dependencies...
   build:
     commands:
-      - echo Build started on `date`
-      - echo Compiling the Node.js code
       - echo Running tests...
-      - mocha test.js
+      - npm test -- --coverage
+      - echo Generating production build...
+      - npm run build
   post_build:
     commands:
       - echo Build completed on `date`
