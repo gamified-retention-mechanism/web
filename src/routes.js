@@ -16,6 +16,7 @@ import QuestionsLandingPage from './question/components/LandingPage'
 import AddQuestion from './question/components/Add'
 import EventsLandingPage from './event/components/LandingPage'
 import AddEvent from './event/components/Add'
+import EventQuestions from './event/components/Questions'
 import PageNotFound from './error/components/PageNotFound'
 
 export default () => (
@@ -29,6 +30,7 @@ export default () => (
       <AdminRoute exact path='/admin/questions' component={QuestionsLandingPage} />
       <AdminRoute exact path='/admin/questions/add' component={AddQuestion} />
       <AdminRoute exact path='/admin/events' component={EventsLandingPage} />
+      <AdminRoute exact path='/admin/events/:event_id/questions' component={EventQuestions} />
       <AdminRoute exact path='/admin/events/add' component={AddEvent} />
       <PlayerRoute path='/:event_id/:team_name/lobby' component={TeamLobby} />
       <PlayerRoute path='/:event_id/:team_name' component={TeamLandingPage} />

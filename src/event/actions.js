@@ -57,3 +57,32 @@ export const saveEvent = (event) => {
       return event
     })
 }
+
+export const updateEvent = (event) => {
+  const apiEndpoint = `${window.config.api_base}/prod/events/${event.event_id}`
+  const opts = {
+    method: 'put',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(event)
+  }
+
+  return fetch(apiEndpoint, opts)
+    .then(response => response.json())
+    .then(json => {
+      if(json.error){
+        json.api_error = `Failed to update your event: ${json.error}`
+        return json
+      }
+
+      json.api_success = 'Successfully updated your event'
+      return json
+    })
+    .catch(err => {
+      event.api_error = `An error occurred while trying to update your event: ${err}`
+      console.log(`error:${event.api_error}\nuri: ${apiEndpoint}\nopts: ${JSON.stringify(opts)}`)
+      return event
+    })
+}

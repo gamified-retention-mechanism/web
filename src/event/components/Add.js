@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup } from 'react-bootstrap'
 import Questions from './Questions'
 import * as actions from '../actions'
-import * as moduleActions from '../../module/actions'
 import history from '../../history'
 
 const styles = {
@@ -11,38 +10,14 @@ const styles = {
   },
   subHeadings:{
     float:'left',
-    clear:'both'
+    clear:'both',
+    marginLeft: '0.5em',
   },
-}
-
-const defaultDates = [
-  {
-    'day': 1,
-    'questions':[
-      {
-        'name':'Question 1',
-        'selected':true
-      },
-      {
-        'name':'Question 2',
-        'selected':false
-      }
-    ]
-  },
-  {
-    'day': 2,
-    'questions':[
-      {
-        'name':'Question 1',
-        'selected':true
-      },
-      {
-        'name':'Question 2',
-        'selected':false
-      }
-    ]
+  saveButton: {
+    marginTop: '1em',
+    marginLeft: '1em',
   }
-]
+}
 
 class Add extends Component {
   constructor(props) {
@@ -52,9 +27,7 @@ class Add extends Component {
       'error_message': '',
       'name': '',
       'start_date': '',
-      'end_date': '',
-      'modules': [],
-      'days': defaultDates
+      'end_date': ''
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -62,17 +35,6 @@ class Add extends Component {
   }
 
   componentDidMount() {
-    moduleActions.listModules().then((response) => {
-      if(response.api_error){
-        const next = Object.assign({}, this.state, {'error_message': response.api_error})
-        console.log(`error fetching modules: ${next.error_message}`)
-        this.setState(next)
-        return
-      }
-      
-      const next = Object.assign({}, this.state, {'modules': response.modules})
-      this.setState(next)
-    })
   }
 
   handleInputChange(prop, val){
@@ -84,22 +46,41 @@ class Add extends Component {
   handleSubmit(e){
     e.preventDefault()
 
-    //TODO - implement me
-  }
+    const { name, start_date, end_date } = this.state
 
-  questionToggleHandler(day, index, selected){
-    const next = Object.assign({}, this.state)
-    next.days[day].questions[index].selected = selected
-    this.setState(next)
+    if(name === ''){
+      const next = Object.assign({}, this.state, {'error_message': 'Event Name is required'})
+      this.setState(next)
+      return
+    }
+
+    if(start_date === ''){
+      const next = Object.assign({}, this.state, {'error_message': 'Start Date is required'})
+      this.setState(next)
+      return
+    }
+
+    if(end_date === ''){
+      const next = Object.assign({}, this.state, {'error_message': 'End Date is required'})
+      this.setState(next)
+      return
+    }
+
+    console.log(`current state: ${JSON.stringify(this.state)}`)
+
+    const event = Object.assign({}, {name:name, start_date:start_date, end_date:end_date})
+    actions.saveEvent(event).then((response) => {
+      if(response.api_error){
+        const next = Object.assign({}, module, {'error_message': response.api_error})
+        this.setState(next)
+        return
+      }
+
+      history.push(`/admin/events/${response.id}/questions`)
+    })
   }
 
   render() {
-    let { modules, answers } = this.state
-
-    if(!modules){
-      modules = []
-    }
-
     return (
       <div>
         <p className="App-intro">
@@ -148,39 +129,9 @@ class Add extends Component {
             </Col>
           </FormGroup>
 
-          <h2 style={styles.subHeadings}>Questions</h2>
-
-          <h3 style={styles.subHeadings}>Day 1</h3>
-          <hr />
-          <Questions
-            modules={modules}
-            questionToggleHandler={(index, selected) => { this.questionToggleHandler(0, index, selected)}}
-          />
-
-          <h3 style={styles.subHeadings}>Day 2</h3>
-          <hr />
-          <Questions
-            modules={modules}
-            questionToggleHandler={(index, selected) => { this.questionToggleHandler(1, index, selected)}}
-          />
-
-          <h3 style={styles.subHeadings}>Day 3</h3>
-          <hr />
-          <Questions
-            modules={modules}
-            questionToggleHandler={(index, selected) => { this.questionToggleHandler(2, index, selected)}}
-          />
-
-          <h3 style={styles.subHeadings}>Day 4</h3>
-          <hr />
-          <Questions
-            modules={modules}
-            questionToggleHandler={(index, selected) => { this.questionToggleHandler(3, index, selected)}}
-          />
-
-          <FormGroup style={styles.clear}>
-            <Col sm={2} smOffset={1}>
-              <Button type="submit" onClick={this.handleSubmit}>
+          <FormGroup>
+            <Col sm={2}>
+              <Button style={styles.saveButton} type="submit" onClick={this.handleSubmit}>
                 Save
               </Button>
             </Col>
