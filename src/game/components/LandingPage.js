@@ -44,7 +44,7 @@ class Landing extends Component {
 
     console.log(`current state: ${JSON.stringify(this.state)}`)
 
-    const team = Object.assign({}, {name: team_name})
+    const team = Object.assign({}, {name: team_name, event_id: event_id})
     actions.saveTeam(team).then((response) => {
       if(response.api_error){
         const next = Object.assign({}, team, {'error_message': response.api_error})
