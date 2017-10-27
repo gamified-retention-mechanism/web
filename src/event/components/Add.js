@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Alert, Button, Checkbox, Col, ControlLabel, Form, FormControl, FormGroup, InputGroup } from 'react-bootstrap'
+import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup } from 'react-bootstrap'
 import Questions from './Questions'
-import * as questionActions from '../../question/actions'
 import * as actions from '../actions'
+import * as moduleActions from '../../module/actions'
 import history from '../../history'
 
 const styles = {
@@ -53,6 +53,7 @@ class Add extends Component {
       'name': '',
       'start_date': '',
       'end_date': '',
+      'modules': [],
       'days': defaultDates
     }
 
@@ -61,6 +62,17 @@ class Add extends Component {
   }
 
   componentDidMount() {
+    moduleActions.listModules().then((response) => {
+      if(response.api_error){
+        const next = Object.assign({}, this.state, {'error_message': response.api_error})
+        console.log(`error fetching modules: ${next.error_message}`)
+        this.setState(next)
+        return
+      }
+      
+      const next = Object.assign({}, this.state, {'modules': response.modules})
+      this.setState(next)
+    })
   }
 
   handleInputChange(prop, val){
@@ -82,6 +94,12 @@ class Add extends Component {
   }
 
   render() {
+    let { modules, answers } = this.state
+
+    if(!modules){
+      modules = []
+    }
+
     return (
       <div>
         <p className="App-intro">
@@ -135,24 +153,28 @@ class Add extends Component {
           <h3 style={styles.subHeadings}>Day 1</h3>
           <hr />
           <Questions
+            modules={modules}
             questionToggleHandler={(index, selected) => { this.questionToggleHandler(0, index, selected)}}
           />
 
           <h3 style={styles.subHeadings}>Day 2</h3>
           <hr />
           <Questions
+            modules={modules}
             questionToggleHandler={(index, selected) => { this.questionToggleHandler(1, index, selected)}}
           />
 
           <h3 style={styles.subHeadings}>Day 3</h3>
           <hr />
           <Questions
+            modules={modules}
             questionToggleHandler={(index, selected) => { this.questionToggleHandler(2, index, selected)}}
           />
 
           <h3 style={styles.subHeadings}>Day 4</h3>
           <hr />
           <Questions
+            modules={modules}
             questionToggleHandler={(index, selected) => { this.questionToggleHandler(3, index, selected)}}
           />
 

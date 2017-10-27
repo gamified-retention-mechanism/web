@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Alert, Col, FormControl, FormGroup, InputGroup, PageHeader, Table } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Col, FormControl, FormGroup, InputGroup } from 'react-bootstrap'
 import * as actions from '../actions'
-
 
 class Question extends Component {
   constructor(props) {
