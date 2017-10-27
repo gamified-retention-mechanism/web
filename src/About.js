@@ -5,7 +5,7 @@ class App extends Component {
   render() {
     return (
       <div>
-      <p>Welcome to the Gamification Retention Mechanism (GRM).</p>
+      <p>Welcome to the Gamified Retention Mechanism (GRM).</p>
       <p>Built as during SA Launch, October 2017 by the following team members:</p>
       <Table striped bordered condensed hover responsive>
         <thead>

@@ -4,6 +4,7 @@ import history from './history'
 import AppRoute from './AppRoute'
 import AdminRoute from './AdminRoute'
 import PlayerRoute from './PlayerRoute'
+import AdminHome from './Admin'
 import Homepage from './Homepage'
 import About from './About'
 import GameLandingPage from './game/components/LandingPage'
@@ -22,6 +23,7 @@ export default () => (
     <Switch>
       <AppRoute exact path='/' component={Homepage} />
       <AppRoute path='/about' component={About} />
+      <AdminRoute path='/admin' component={AdminHome} />
       <AdminRoute path='/admin/modules' component={ModulesLandingPage} />
       <AdminRoute path='/admin/modules/add' component={AddModule} />
       <AdminRoute path='/admin/questions' component={QuestionsLandingPage} />
