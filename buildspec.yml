@@ -18,7 +18,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - echo ls -la 
+      - echo ls -la
 artifacts:
   files:
-    - '**/*'
+    - 'build/*'
