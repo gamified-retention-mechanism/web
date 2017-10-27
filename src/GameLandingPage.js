@@ -36,7 +36,7 @@ class GameLanding extends Component {
     e.preventDefault()
 
     const teamName = this.state.name
-    const { gameID } = this.props.match.params
+    // const { gameID } = this.props.match.params
 
     if(teamName === ''){
       const next = Object.assign({}, this.state, {'error_message': 'You must enter a team name'})
@@ -62,10 +62,10 @@ class GameLanding extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Let's Get Ready to Rumble!!</h1>
+          <h1 className="App-title">AWS GRM</h1>
         </header>
         <p className="App-intro">
-          Get ready for Game {gameID}
+          Let's Get Ready to Rumble!! {gameID}
         </p>
         { this.state.error_message !== '' &&
           <Alert bsStyle="warning">{this.state.error_message}</Alert>
