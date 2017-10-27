@@ -7,6 +7,7 @@ import PlayerRoute from './PlayerRoute'
 import AdminHome from './Admin'
 import Homepage from './Homepage'
 import About from './About'
+import AdminGameLobby from './admin/components/GameLobby'
 import GameLandingPage from './game/components/LandingPage'
 import TeamLandingPage from './team/components/LandingPage'
 import TeamLobby from './team/components/Lobby'
@@ -32,6 +33,7 @@ export default () => (
       <AdminRoute exact path='/admin/events' component={EventsLandingPage} />
       <AdminRoute exact path='/admin/events/:event_id/questions' component={EventQuestions} />
       <AdminRoute exact path='/admin/events/add' component={AddEvent} />
+      <AdminRoute exact path='/admin/:event_id/lobby' component={AdminGameLobby} />
       <PlayerRoute path='/:event_id/:team_name/lobby' component={TeamLobby} />
       <PlayerRoute path='/:event_id/:team_name' component={TeamLandingPage} />
       <PlayerRoute path='/:event_id' component={GameLandingPage} />
