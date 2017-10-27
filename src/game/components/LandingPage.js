@@ -25,7 +25,7 @@ class Landing extends Component {
   }
 
   handleInputChange(prop, val){
-    const next = Object.assign(this.state)
+    const next = Object.assign({}, this.state)
     next[prop] = val
     this.setState(next)
   }
@@ -34,7 +34,7 @@ class Landing extends Component {
     e.preventDefault()
 
     const teamName = this.state.name
-    // const { gameID } = this.props.match.params
+    const { gameID } = this.props.match.params
 
     if(teamName === ''){
       const next = Object.assign({}, this.state, {'error_message': 'You must enter a team name'})
@@ -43,14 +43,16 @@ class Landing extends Component {
     }
 
     console.log(`current state: ${JSON.stringify(this.state)}`)
-    actions.saveTeam(this.state).then((response) => {
+
+    const team = Object.assign({}, {name: teamName})
+    actions.saveTeam(team).then((response) => {
       if(response.api_error){
-        const next = Object.assign({}, this.state, {'error_message': response.api_error})
+        const next = Object.assign({}, team, {'error_message': response.api_error})
         this.setState(next)
         return
       }
 
-      history.push(teamName)
+      history.push(`/${gameID}/${teamName}`)
     })
   }
 

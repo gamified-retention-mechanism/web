@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch'
 
-
 export const saveTeam = (team) => {
   const apiEndpoint = 'https://reqres.in/api/users/'
   const opts = {
@@ -11,6 +10,7 @@ export const saveTeam = (team) => {
     },
     body: JSON.stringify(team)
   }
+  
   return fetch(apiEndpoint, opts)
     .then(response => response.json())
     .then(json => {
