@@ -29,7 +29,7 @@ class Landing extends Component {
         return
       }
 
-      const next = Object.assign({}, this.state, {'modules': response.modules})
+      const next = Object.assign({}, this.state, {'questions': response.questions})
       this.setState(next)
     })
   }
@@ -54,8 +54,8 @@ class Landing extends Component {
         <Table responsive striped condensed>
           <thead>
             <tr>
-              <th>ID</th>
               <th>Active</th>
+              <th>Module</th>
               <th>Question</th>
             </tr>
           </thead>
@@ -63,9 +63,9 @@ class Landing extends Component {
             { questions.map((question, i) => {
               return (
                 <tr key={i}>
-                  <td>{question.id}</td>
-                  <td>{question.active}</td>
-                  <td><Link to={`/question/edit/${question.id}`}>{question.value}</Link></td>
+                  <td>{question.active ? 'Yes' : 'No'}</td>
+                  <td>{question.module}</td>
+                  <td><Link to={`/question/edit/${question.id}`}>{question.question}</Link></td>
                 </tr>
               )
             })}

@@ -1,8 +1,27 @@
 import React, { Component } from 'react'
-import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup } from 'react-bootstrap'
+import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup, InputGroup } from 'react-bootstrap'
 import history from '../../history'
 import * as moduleActions from '../../module/actions'
 import * as actions from '../actions'
+
+const defaultAnswers = [
+  {
+    'value':'',
+    'valid':false,
+  },
+  {
+    'value':'',
+    'valid':false,
+  },
+  {
+    'value':'',
+    'valid':false,
+  },
+  {
+    'value':'',
+    'valid':false,
+  }
+]
 
 class Add extends Component {
   constructor(props) {
@@ -13,12 +32,13 @@ class Add extends Component {
       'module_id':'',
       'modules':[],
       'value': '',
-      'answers':['','','','']
+      'answers':defaultAnswers
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleAnswerInputChange = this.handleAnswerInputChange.bind(this)
+    this.handleAnswerValidChange = this.handleAnswerValidChange.bind(this)
   }
 
   componentDidMount() {
@@ -42,7 +62,13 @@ class Add extends Component {
 
   handleAnswerInputChange(index, val){
     const next = Object.assign({}, this.state)
-    next.answers[index] = val
+    next.answers[index].value = val
+    this.setState(next)
+  }
+
+  handleAnswerValidChange(index, val){
+    const next = Object.assign({}, this.state)
+    next.answers[index].valid = val
     this.setState(next)
   }
 
@@ -86,7 +112,7 @@ class Add extends Component {
     }
 
     if(!answers){
-      answers = ['', '', '', '']
+      answers = defaultAnswers
     }
 
     return (
@@ -136,11 +162,20 @@ class Add extends Component {
               <FormGroup key={i}>
                 <Col componentClass={ControlLabel} sm={2}>Answer {i + 1}</Col>
                 <Col sm={10}>
-                  <FormControl
-                    type="text"
-                    value={answer}
-                    onChange={(e) => { this.handleAnswerInputChange(i, e.target.value) }}
-                  />
+                  <InputGroup>
+                    <InputGroup.Addon>
+                      <input type="checkbox"
+                        aria-label="valid"
+                        checked={answer.valid}
+                        onChange={(e) => { this.handleAnswerValidChange(i, e.target.checked) }}
+                      />
+                    </InputGroup.Addon>
+                    <FormControl
+                      type="text"
+                      value={answer.value}
+                      onChange={(e) => { this.handleAnswerInputChange(i, e.target.value) }}
+                    />
+                  </InputGroup>
                   <FormControl.Feedback />
                 </Col>
               </FormGroup>

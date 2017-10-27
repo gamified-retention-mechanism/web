@@ -8,7 +8,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Gamification Retention Mechanism</h1>
+          <h1 className="App-title">GRM</h1>
         </header>
         <div className="App-intro">
           {this.props.children}
