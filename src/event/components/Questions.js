@@ -59,7 +59,7 @@ class Questions extends Component {
 
       return q
     })
-    
+
     this.setState(next)
   }
 
@@ -86,7 +86,7 @@ class Questions extends Component {
 
     console.log(`current state: ${JSON.stringify(this.state)}`)
 
-    const event = Object.assign({}, {event_id: event_id, questions: questions})
+    const event = Object.assign({}, {eventid: event_id, questions: questions})
     actions.updateEvent(event).then((response) => {
       if(response.api_error){
         const next = Object.assign({}, module, {'error_message': response.api_error})
@@ -99,7 +99,6 @@ class Questions extends Component {
   }
 
   render() {
-    const { event_id } = this.props.match.params
     let { questions, modules } = this.state
 
     if(!questions){

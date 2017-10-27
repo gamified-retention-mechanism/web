@@ -30,7 +30,7 @@ export const listEvents = () => {
 
 
 export const saveEvent = (event) => {
-  const apiEndpoint = `${window.config.api_base}/prod/events`
+  const apiEndpoint = `${window.config.api_base}/prod/event`
   const opts = {
     method: 'post',
     mode: 'cors',
@@ -59,7 +59,7 @@ export const saveEvent = (event) => {
 }
 
 export const updateEvent = (event) => {
-  const apiEndpoint = `${window.config.api_base}/prod/events/${event.event_id}`
+  const apiEndpoint = `${window.config.api_base}/prod/event/${event.eventid}`
   const opts = {
     method: 'put',
     mode: 'cors',

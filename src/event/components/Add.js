@@ -76,7 +76,7 @@ class Add extends Component {
         return
       }
 
-      history.push(`/admin/events/${response.id}/questions`)
+      history.push(`/admin/events/${response.eventid}/questions`)
     })
   }
 
