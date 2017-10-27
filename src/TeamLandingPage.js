@@ -20,7 +20,7 @@ class TeamLanding extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">AWS GRM</h1>
+          <h1 className="App-title">Gamification Retention Mechanism</h1>
         </header>
         <p className="App-intro">
           Game: {gameID}
