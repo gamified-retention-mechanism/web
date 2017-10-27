@@ -22,14 +22,14 @@ export default () => (
   <Router history={history} >
     <Switch>
       <AppRoute exact path='/' component={Homepage} />
-      <AppRoute path='/about' component={About} />
-      <AdminRoute path='/admin' component={AdminHome} />
-      <AdminRoute path='/admin/modules' component={ModulesLandingPage} />
-      <AdminRoute path='/admin/modules/add' component={AddModule} />
-      <AdminRoute path='/admin/questions' component={QuestionsLandingPage} />
-      <AdminRoute path='/admin/questions/add' component={AddQuestion} />
-      <AdminRoute path='/admin/events' component={EventsLandingPage} />
-      <AdminRoute path='/admin/events/add' component={AddEvent} />
+      <AppRoute exact path='/about' component={About} />
+      <AdminRoute exact path='/admin' component={AdminHome} />
+      <AdminRoute exact path='/admin/modules' component={ModulesLandingPage} />
+      <AdminRoute exact path='/admin/modules/add' component={AddModule} />
+      <AdminRoute exact path='/admin/questions' component={QuestionsLandingPage} />
+      <AdminRoute exact path='/admin/questions/add' component={AddQuestion} />
+      <AdminRoute exact path='/admin/events' component={EventsLandingPage} />
+      <AdminRoute exact path='/admin/events/add' component={AddEvent} />
       <PlayerRoute path='/:event_id/:team_name/lobby' component={TeamLobby} />
       <PlayerRoute path='/:event_id/:team_name' component={TeamLandingPage} />
       <PlayerRoute path='/:event_id' component={GameLandingPage} />

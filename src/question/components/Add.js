@@ -29,7 +29,7 @@ class Add extends Component {
 
     this.state = {
       'error_message': '',
-      'module_id':'',
+      'module':'',
       'modules':[],
       'value': '',
       'active': true,
@@ -76,9 +76,9 @@ class Add extends Component {
   handleSubmit(e){
     e.preventDefault()
 
-    const { moduleID, value, answers } = this.state
+    const { module, active, value, answers } = this.state
 
-    if(moduleID === ''){
+    if(module === ''){
       const next = Object.assign({}, this.state, {'error_message': 'You must select a module'})
       this.setState(next)
       return
@@ -94,7 +94,7 @@ class Add extends Component {
 
     console.log(`current state: ${JSON.stringify(this.state)}`)
 
-    const question = Object.assign({}, {module_id: moduleID, value: value, answers: answers})
+    const question = Object.assign({}, {module: module, active: active, question: value, answers: answers})
     actions.saveQuestion(question).then((response) => {
       if(response.api_error){
         const next = Object.assign({}, module, {'error_message': response.api_error})
@@ -143,13 +143,13 @@ class Add extends Component {
               <FormControl
                 componentClass='select'
                 bsSize='large'
-                name='module_id'
-                value={this.state.module_id}
-                onChange={(e) => { this.handleInputChange('module_id', e.target.value) }}>
+                name='module'
+                value={this.state.module}
+                onChange={(e) => { this.handleInputChange('module', e.target.value) }}>
                 <option value=''>-  -</option>
                 { modules.map((module, i) => {
                   return (
-                    <option key={i} value={module.id}>{module.name}</option>
+                    <option key={i} value={module.name}>{module.name}</option>
                   )
                 })}
               </FormControl>
