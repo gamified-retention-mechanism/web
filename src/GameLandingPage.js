@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import logo from './logo.svg'
 import { Alert, Button, ControlLabel, Form, FormControl, FormGroup } from 'react-bootstrap'
 import history from './history'
+import * as actions from './actions'
 import './App.css'
 
 class GameLanding extends Component {
@@ -33,16 +34,24 @@ class GameLanding extends Component {
 
   handleSubmit(e){
     e.preventDefault()
+
     if(this.state.name === ''){
       const next = Object.assign({}, this.state, {'error_message': 'You must enter a team name'})
       this.setState(next)
       return
     }
-    console.log(`current state: ${JSON.stringify(this.state)}`)
-    //TODO - call API from here; persist value
 
-    const { gameID } = this.props.match.params
-    history.push(`/${gameID}/${this.state.name}`)
+    console.log(`current state: ${JSON.stringify(this.state)}`)
+    actions.saveTeam(this.state).then((response) => {
+      if(response.api_error){
+        const next = Object.assign({}, this.state, {'error_message': response.api_error})
+        this.setState(next)
+        return
+      }
+      
+      const { gameID } = this.props.match.params
+      history.push(`/${gameID}/${this.state.name}`)
+    })
   }
 
   render() {
