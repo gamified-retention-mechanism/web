@@ -6,6 +6,8 @@ import Homepage from './Homepage'
 import About from './About'
 import GameLandingPage from './game/components/LandingPage'
 import TeamLandingPage from './team/components/LandingPage'
+import ModuleLandingPage from './module/components/LandingPage'
+import AddModule from './module/components/Add'
 import PageNotFound from './error/components/PageNotFound'
 
 export default () => (
@@ -13,6 +15,8 @@ export default () => (
     <Switch>
       <AppRoute exact path='/' component={Homepage} />
       <AppRoute exact path='/about' component={About} />
+      <AppRoute exact path='/modules' component={ModuleLandingPage} />
+      <AppRoute exact path='/module/add' component={AddModule} />
       <AppRoute path='/:gameID/:teamName' component={TeamLandingPage} />
       <AppRoute path='/:gameID' component={GameLandingPage} />
       <Route component={PageNotFound} />

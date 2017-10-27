@@ -4,7 +4,7 @@ import { Alert, Button, ControlLabel, Form, FormControl, FormGroup } from 'react
 import history from '../../history'
 import * as actions from '../actions'
 
-class Landing extends Component {
+class Add extends Component {
   constructor(props) {
     super(props)
 
@@ -33,26 +33,25 @@ class Landing extends Component {
   handleSubmit(e){
     e.preventDefault()
 
-    const teamName = this.state.name
-    const { gameID } = this.props.match.params
+    const moduleName = this.state.name
 
-    if(teamName === ''){
-      const next = Object.assign({}, this.state, {'error_message': 'You must enter a team name'})
+    if(moduleName === ''){
+      const next = Object.assign({}, this.state, {'error_message': 'You must enter a module name'})
       this.setState(next)
       return
     }
 
     console.log(`current state: ${JSON.stringify(this.state)}`)
 
-    const team = Object.assign({}, {name: teamName})
-    actions.saveTeam(team).then((response) => {
+    const module = Object.assign({}, {name: moduleName})
+    actions.saveModule(module).then((response) => {
       if(response.api_error){
-        const next = Object.assign({}, team, {'error_message': response.api_error})
+        const next = Object.assign({}, module, {'error_message': response.api_error})
         this.setState(next)
         return
       }
 
-      history.push(`/${gameID}/${teamName}`)
+      history.push(`/modules`)
     })
   }
 
@@ -68,11 +67,11 @@ class Landing extends Component {
         }
         <Form inline>
           <FormGroup validationState={this.state.error_message !== '' ? 'error' : null}>
-            <ControlLabel>Team Name</ControlLabel>
+            <ControlLabel>Module Name</ControlLabel>
             {'  '}
             <FormControl
               type="text"
-              placeholder="Honeybuckets"
+              placeholder="Presenting"
               value={this.state.name}
               onChange={(e) => { this.handleInputChange('name', e.target.value) }}
             />
@@ -80,7 +79,7 @@ class Landing extends Component {
           </FormGroup>
           {'  '}
           <Button type="submit" onClick={this.handleSubmit}>
-            Enter Lobby
+            Save
           </Button>
         </Form>
       </div>
@@ -88,4 +87,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing
+export default Add
