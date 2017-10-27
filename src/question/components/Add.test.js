@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom'
 import Add from './Add'
 
 it('renders without crashing', () => {
+  window.config = {
+    api_base: 'http://test-url'
+  }
   const match = {
     params : {
 

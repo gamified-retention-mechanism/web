@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Button, Checkbox, Col, ControlLabel, Form, FormControl, FormGroup, InputGroup } from 'react-bootstrap'
+import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup, InputGroup } from 'react-bootstrap'
 import history from '../../history'
 import * as moduleActions from '../../module/actions'
 import * as actions from '../actions'
@@ -126,6 +126,16 @@ class Add extends Component {
         }
         <Form>
           <FormGroup>
+            <Col smOffset={1} sm={1}>
+              <input type="checkbox"
+                aria-label="active"
+                checked={this.state.active}
+                onChange={(e) => { this.handleInputChange('active', e.target.checked) }}
+              />
+            </Col>
+            <Col sm={10}>Active</Col>
+          </FormGroup>
+          <FormGroup>
             <Col componentClass={ControlLabel} sm={2}>
               Module
             </Col>
@@ -145,16 +155,6 @@ class Add extends Component {
               </FormControl>
               <FormControl.Feedback />
             </Col>
-          </FormGroup>
-          <FormGroup>
-            <Col sm={1}>
-              <input type="checkbox"
-                aria-label="active"
-                checked={this.state.active}
-                onChange={(e) => { this.handleInputChange('active', e.target.checked) }}
-              />
-            </Col>
-            <Col componentClass={ControlLabel}>Active</Col>
           </FormGroup>
           <FormGroup>
             <Col componentClass={ControlLabel} sm={2}>Question</Col>
