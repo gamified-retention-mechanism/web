@@ -67,7 +67,7 @@ class Lobby extends Component {
           <Alert bsStyle="warning">{this.state.error_message}</Alert>
         }
 
-        <Label style={styles.team} bsStyle="info">Honeybuckets: Jit, Bini, Keith, Steven, Mark, David</Label>
+        <Label style={styles.team} bsStyle="info">Honeybuckets</Label>
         <Label style={styles.team} bsStyle="info">6b</Label>
         <Label style={styles.team} bsStyle="info">Cloud Cats</Label>
         <Label style={styles.team} bsStyle="info">Hi-5</Label>
