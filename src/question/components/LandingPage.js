@@ -44,7 +44,7 @@ class Landing extends Component {
       <div>
         <PageHeader>
           Questions
-          <Link to="/question/add" style={styles.addButton} className='btn btn-success'>Add</Link>
+          <Link to="/questions/add" style={styles.addButton} className='btn btn-success'>Add</Link>
         </PageHeader>
 
         { this.state.error_message !== '' &&

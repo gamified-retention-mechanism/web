@@ -18,9 +18,9 @@ export default () => (
       <AppRoute exact path='/' component={Homepage} />
       <AppRoute exact path='/about' component={About} />
       <AppRoute exact path='/modules' component={ModuleLandingPage} />
-      <AppRoute exact path='/module/add' component={AddModule} />
+      <AppRoute exact path='/modules/add' component={AddModule} />
       <AppRoute exact path='/questions' component={QuestionLandingPage} />
-      <AppRoute exact path='/question/add' component={AddQuestion} />
+      <AppRoute exact path='/questions/add' component={AddQuestion} />
       <AppRoute path='/:gameID/:teamName' component={TeamLandingPage} />
       <AppRoute path='/:gameID' component={GameLandingPage} />
       <Route component={PageNotFound} />

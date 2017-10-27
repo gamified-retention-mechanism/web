@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 
 export const listQuestions = () => {
-  const apiEndpoint = 'https://reqres.in/api/users/'
+  const apiEndpoint = `${window.config.api_base}/prod/questions`
   const opts = {
     method: 'get',
     mode: 'cors',
@@ -30,7 +30,7 @@ export const listQuestions = () => {
 
 
 export const saveQuestion = (question) => {
-  const apiEndpoint = 'https://reqres.in/api/users/'
+  const apiEndpoint = `${window.config.api_base}/prod/questions`
   const opts = {
     method: 'post',
     mode: 'cors',
