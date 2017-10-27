@@ -5,7 +5,7 @@ import LandingPage from './LandingPage'
 it('renders without crashing', () => {
   const match = {
     params : {
-      gameID: 'abc123',
+      event_id: 'abc123',
     }
   }
 

@@ -2,6 +2,8 @@ import React from 'react'
 import { Route, Router, Switch } from 'react-router-dom'
 import history from './history'
 import AppRoute from './AppRoute'
+import AdminRoute from './AdminRoute'
+import PlayerRoute from './PlayerRoute'
 import Homepage from './Homepage'
 import About from './About'
 import GameLandingPage from './game/components/LandingPage'
@@ -19,14 +21,14 @@ export default () => (
     <Switch>
       <AppRoute exact path='/' component={Homepage} />
       <AppRoute exact path='/about' component={About} />
-      <AppRoute exact path='/modules' component={ModulesLandingPage} />
-      <AppRoute exact path='/modules/add' component={AddModule} />
-      <AppRoute exact path='/questions' component={QuestionsLandingPage} />
-      <AppRoute exact path='/questions/add' component={AddQuestion} />
-      <AppRoute exact path='/events' component={EventsLandingPage} />
-      <AppRoute exact path='/events/add' component={AddEvent} />
-      <AppRoute path='/:event_id/:team_name' component={TeamLandingPage} />
-      <AppRoute path='/:event_id' component={GameLandingPage} />
+      <AdminRoute exact path='/admin/modules' component={ModulesLandingPage} />
+      <AdminRoute exact path='/admin/modules/add' component={AddModule} />
+      <AdminRoute exact path='/admin/questions' component={QuestionsLandingPage} />
+      <AdminRoute exact path='/admin/questions/add' component={AddQuestion} />
+      <AdminRoute exact path='/admin/events' component={EventsLandingPage} />
+      <AdminRoute exact path='/admin/events/add' component={AddEvent} />
+      <PlayerRoute path='/:event_id/:team_name' component={TeamLandingPage} />
+      <PlayerRoute path='/:event_id' component={GameLandingPage} />
       <Route component={PageNotFound} />
     </Switch>
   </Router>

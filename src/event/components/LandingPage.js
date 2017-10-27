@@ -44,7 +44,7 @@ class Landing extends Component {
       <div>
         <PageHeader>
           Events
-          <Link to="/events/add" style={styles.addButton} className='btn btn-success'>Add</Link>
+          <Link to="/admin/events/add" style={styles.addButton} className='btn btn-success'>Add</Link>
         </PageHeader>
 
         { this.state.error_message !== '' &&

@@ -51,7 +51,7 @@ class Add extends Component {
         return
       }
 
-      history.push(`/modules`)
+      history.push(`/admin/modules`)
     })
   }
 

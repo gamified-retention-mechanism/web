@@ -12,15 +12,15 @@ class Landing extends Component {
   }
 
   render() {
-    const { gameID, teamName } = this.props.match.params
+    const { event_id, team_name } = this.props.match.params
 
     return (
       <div>
         <p className="App-intro">
-          Game: {gameID}
+          Game: {event_id}
         </p>
         <p>
-          Coming soon - {teamName} Team Landing Page
+          Coming soon - Team Landing Page
         </p>
       </div>
     )

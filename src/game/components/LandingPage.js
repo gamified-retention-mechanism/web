@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Alert, Button, ControlLabel, Form, FormControl, FormGroup } from 'react-bootstrap'
 import history from '../../history'
-import * as actions from '../actions'
+import * as actions from '../../team/actions'
 
 class Landing extends Component {
   constructor(props) {
@@ -33,10 +33,10 @@ class Landing extends Component {
   handleSubmit(e){
     e.preventDefault()
 
-    const teamName = this.state.name
-    const { gameID } = this.props.match.params
+    const team_name = this.state.name
+    const { event_id } = this.props.match.params
 
-    if(teamName === ''){
+    if(team_name === ''){
       const next = Object.assign({}, this.state, {'error_message': 'You must enter a team name'})
       this.setState(next)
       return
@@ -44,7 +44,7 @@ class Landing extends Component {
 
     console.log(`current state: ${JSON.stringify(this.state)}`)
 
-    const team = Object.assign({}, {name: teamName})
+    const team = Object.assign({}, {name: team_name})
     actions.saveTeam(team).then((response) => {
       if(response.api_error){
         const next = Object.assign({}, team, {'error_message': response.api_error})
@@ -52,16 +52,16 @@ class Landing extends Component {
         return
       }
 
-      history.push(`/${gameID}/${teamName}`)
+      history.push(`/${event_id}/${team_name}`)
     })
   }
 
   render() {
-    const { gameID } = this.props.match.params
+    const { event_id } = this.props.match.params
     return (
       <div>
         <p className="App-intro">
-          Let's Get Ready to Rumble!! {gameID}
+          Let's Get Ready to Rumble!! {event_id}
         </p>
         { this.state.error_message !== '' &&
           <Alert bsStyle="warning">{this.state.error_message}</Alert>

@@ -102,7 +102,7 @@ class Add extends Component {
         return
       }
 
-      history.push(`/questions`)
+      history.push(`/admin/questions`)
     })
   }
 
