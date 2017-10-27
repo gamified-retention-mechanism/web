@@ -9,7 +9,6 @@ class Add extends Component {
     super(props)
 
     this.state = {
-      'name': '',
       'error_message': '',
     }
 
@@ -33,40 +32,40 @@ class Add extends Component {
   handleSubmit(e){
     e.preventDefault()
 
-    const moduleName = this.state.name
-
-    if(moduleName === ''){
-      const next = Object.assign({}, this.state, {'error_message': 'You must enter a module name'})
-      this.setState(next)
-      return
-    }
-
-    console.log(`current state: ${JSON.stringify(this.state)}`)
-
-    const module = Object.assign({}, {name: moduleName})
-    actions.saveModule(module).then((response) => {
-      if(response.api_error){
-        const next = Object.assign({}, module, {'error_message': response.api_error})
-        this.setState(next)
-        return
-      }
-
-      history.push(`/modules`)
-    })
+    // const moduleName = this.state.name
+    //
+    // if(moduleName === ''){
+    //   const next = Object.assign({}, this.state, {'error_message': 'You must enter a module name'})
+    //   this.setState(next)
+    //   return
+    // }
+    //
+    // console.log(`current state: ${JSON.stringify(this.state)}`)
+    //
+    // const module = Object.assign({}, {name: moduleName})
+    // actions.saveModule(module).then((response) => {
+    //   if(response.api_error){
+    //     const next = Object.assign({}, module, {'error_message': response.api_error})
+    //     this.setState(next)
+    //     return
+    //   }
+    //
+    //   history.push(`/modules`)
+    // })
   }
 
   render() {
     return (
       <div>
         <p className="App-intro">
-          Add Module
+          Add Question
         </p>
         { this.state.error_message !== '' &&
           <Alert bsStyle="warning">{this.state.error_message}</Alert>
         }
         <Form inline>
           <FormGroup validationState={this.state.error_message !== '' ? 'error' : null}>
-            <ControlLabel>Module Name</ControlLabel>
+            <ControlLabel>Question</ControlLabel>
             {'  '}
             <FormControl
               type="text"
