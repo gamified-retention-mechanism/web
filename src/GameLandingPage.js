@@ -35,7 +35,10 @@ class GameLanding extends Component {
   handleSubmit(e){
     e.preventDefault()
 
-    if(this.state.name === ''){
+    const teamName = this.state.name
+    const { gameID } = this.props.match.params
+
+    if(teamName === ''){
       const next = Object.assign({}, this.state, {'error_message': 'You must enter a team name'})
       this.setState(next)
       return
@@ -48,9 +51,8 @@ class GameLanding extends Component {
         this.setState(next)
         return
       }
-      
-      const { gameID } = this.props.match.params
-      history.push(`/${gameID}/${this.state.name}`)
+
+      history.push(teamName)
     })
   }
 

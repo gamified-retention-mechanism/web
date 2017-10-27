@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch'
 
 
 export const saveTeam = (team) => {
-  const apiEndpoint = 'TODO/video-uri'
+  const apiEndpoint = 'https://reqres.in/api/users/'
   const opts = {
     method: 'post',
     mode: 'cors',
