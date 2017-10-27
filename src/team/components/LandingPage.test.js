@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TeamLandingPage from './TeamLandingPage';
+import LandingPage from './LandingPage';
 
 it('renders without crashing', () => {
-  const match = { 
+  const match = {
     params : {
       gameID: 'abc123',
       teamName: 'Honeybuckets'
@@ -11,5 +11,5 @@ it('renders without crashing', () => {
   }
 
   const div = document.createElement('div')
-  ReactDOM.render(<TeamLandingPage match={match}/>, div)
+  ReactDOM.render(<LandingPage match={match}/>, div)
 });

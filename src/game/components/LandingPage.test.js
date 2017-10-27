@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import GameLandingPage from './GameLandingPage'
+import LandingPage from './LandingPage'
 
 it('renders without crashing', () => {
   const match = {
@@ -10,5 +10,5 @@ it('renders without crashing', () => {
   }
 
   const div = document.createElement('div')
-  ReactDOM.render(<GameLandingPage match={match}/>, div)
+  ReactDOM.render(<LandingPage match={match}/>, div)
 })

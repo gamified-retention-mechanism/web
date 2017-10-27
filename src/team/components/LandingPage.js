@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import logo from './logo.svg'
-import './App.css'
 
-class TeamLanding extends Component {
+class Landing extends Component {
 
   static propTypes = {
     match: PropTypes.object.isRequired
@@ -17,11 +15,7 @@ class TeamLanding extends Component {
     const { gameID, teamName } = this.props.match.params
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Gamification Retention Mechanism</h1>
-        </header>
+      <div>
         <p className="App-intro">
           Game: {gameID}
         </p>
@@ -33,4 +27,4 @@ class TeamLanding extends Component {
   }
 }
 
-export default TeamLanding
+export default Landing

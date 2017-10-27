@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import logo from './logo.svg'
 import { Alert, Button, ControlLabel, Form, FormControl, FormGroup } from 'react-bootstrap'
-import history from './history'
-import * as actions from './actions'
-import './App.css'
+import history from '../../history'
+import * as actions from '../actions'
 
-class GameLanding extends Component {
+class Landing extends Component {
   constructor(props) {
     super(props)
 
@@ -59,11 +57,7 @@ class GameLanding extends Component {
   render() {
     const { gameID } = this.props.match.params
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Gamification Retention Mechanism</h1>
-        </header>
+      <div>
         <p className="App-intro">
           Let's Get Ready to Rumble!! {gameID}
         </p>
@@ -91,4 +85,4 @@ class GameLanding extends Component {
   }
 }
 
-export default GameLanding
+export default Landing
