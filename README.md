@@ -1,6 +1,6 @@
 # GRM Web
 
-React app front-end for the Gamification Retention Mechanism (GRM) system. 
+React app front-end for the Gamified Retention Mechanism (GRM) system. 
 
 ## Team Honeybuckets
 
